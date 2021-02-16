@@ -2,6 +2,7 @@ plugins {
     java
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.serialization") version "1.4.21"
+    application
 }
 
 group = "de.polylymer"
@@ -23,6 +24,10 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.11")
 }
 
+application {
+    mainClass.set("de.polylymer.ManagerKt")
+}
+
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
@@ -30,3 +35,4 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 java.sourceCompatibility = JavaVersion.VERSION_11
 java.targetCompatibility = JavaVersion.VERSION_11
+
