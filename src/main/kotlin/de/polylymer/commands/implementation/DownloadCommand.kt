@@ -42,5 +42,4 @@ object DownloadCommand : SlashCommand(
             }
         }
     }
-
 }

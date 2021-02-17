@@ -1,6 +1,7 @@
 package de.polylymer.commands
 
 import de.polylymer.Manager
+import de.polylymer.commands.implementation.CapeCommand
 import de.polylymer.commands.implementation.DownloadCommand
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.createApplicationCommand
@@ -8,7 +9,6 @@ import dev.kord.core.entity.Guild
 import dev.kord.core.event.guild.GuildCreateEvent
 import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.core.event.message.MessageCreateEvent
-import kotlin.collections.HashMap
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
 
@@ -22,22 +22,27 @@ object CommandManager {
     }
 
     suspend fun init() {
-        println("1")
+
         DownloadCommand
-        println("2")
+        CapeCommand
+
         cleanupGuilds()
-        println("3")
         registerOnGuilds()
-        println("4")
         Manager.client.on<GuildCreateEvent> {
             this.guild.cleanupCommands()
             this.guild.registerCommands()
         }
-        println("5")
         Manager.client.on<InteractionCreateEvent> {
             commands[interaction.command.name]?.handleCommand(interaction)
         }
-        println("6")
+        Manager.client.on<MessageCreateEvent> {
+            if(!this.member!!.isBot) {
+                if(this.message.content.contains("discord.gg")) {
+                    this.message.delete()
+                    this.member!!.kick("Posting invites")
+                }
+            }
+        }
     }
 
     private suspend fun registerOnGuilds() = Manager.client.guilds.collect { it.registerCommands() }
