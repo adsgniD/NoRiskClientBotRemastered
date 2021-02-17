@@ -3,6 +3,7 @@ package de.polylymer.commands
 import de.polylymer.Manager
 import de.polylymer.commands.implementation.DownloadCommand
 import dev.kord.common.annotation.KordPreview
+import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.createApplicationCommand
 import dev.kord.core.entity.Guild
 import dev.kord.core.event.guild.GuildCreateEvent
@@ -35,7 +36,12 @@ object CommandManager {
         }
         println("5")
         Manager.client.on<InteractionCreateEvent> {
-            commands[interaction.command.name]?.handleCommand(interaction)
+            if(this.interaction.channel.id.asString == "774273609467691018") {
+                commands[interaction.command.name]?.handleCommand(interaction)
+            } else {
+                this.interaction.channel.createMessage("Bitte führe Bot-Commands in " + this.interaction.guild.getChannel(Snowflake("774273609467691018")
+                ).mention + " aus " + this.interaction.member.mention)
+            }
         }
         println("6")
     }
