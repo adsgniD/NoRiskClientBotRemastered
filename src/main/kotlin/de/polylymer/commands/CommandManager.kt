@@ -4,6 +4,7 @@ import de.polylymer.Manager
 import de.polylymer.commands.implementation.CapeCommand
 import de.polylymer.commands.implementation.DownloadCommand
 import de.polylymer.commands.implementation.RandomCommand
+import de.polylymer.commands.implementation.TemplateCommand
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.createApplicationCommand
@@ -28,6 +29,7 @@ object CommandManager {
         DownloadCommand
         CapeCommand
         RandomCommand
+        TemplateCommand
 
         cleanupGuilds()
         registerOnGuilds()
