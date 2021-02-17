@@ -45,13 +45,16 @@ object Manager {
                         }
                     }
                 } else {
-                    if(this.message.content.contains("discord.gg")) {
+                    if(this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
                         this.member!!.kick("Posting invites")
                     } else if(this.message.channelId.asString == "774982518133751858") {
                         if(this.message.attachments.isNotEmpty()) {
                             this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                         }
+                    }
+                    if(this.message.content.toLowerCase().contains("cape") && this.message.content.toLowerCase().contains("nicht")) {
+                        this.message.channel.createMessage("https://media.discordapp.net/attachments/774274615408328724/809743719057326122/ouahhhh_MeIn_CaPe_GeHt_NiChT.gif")
                     }
                 }
             }
