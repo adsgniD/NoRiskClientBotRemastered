@@ -23,6 +23,10 @@ object DownloadCommand : SlashCommand(
                 thumb.url = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
                 color = Color(0, 251, 255)
                 thumbnail = thumb
+                val foot = EmbedBuilder.Footer()
+                foot.icon = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
+                foot.text = interaction.getGuild().name
+                footer = foot
                 field {
                     name = "Tutorial-Video"
                     value = "https://www.youtube.com/watch?v=4dcUdz2Efdc"

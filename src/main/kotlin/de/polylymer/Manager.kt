@@ -75,6 +75,10 @@ object Manager {
                                     color = Color(0, 251, 255)
                                     thumbnail = thumb
                                     image = reactionAddEvent.message.asMessage().embeds[0].image!!.url!!
+                                    val foot = EmbedBuilder.Footer()
+                                    foot.icon = reactionAddEvent.getGuild()!!.getIconUrl(Image.Format.GIF)!!
+                                    foot.text = reactionAddEvent.getGuild()!!.name
+                                    footer = foot
                                 }
                             }
                         }
@@ -92,6 +96,10 @@ object Manager {
                                         color = Color(0, 251, 255)
                                         thumbnail = thumb
                                         image = reactionAddEvent.message.asMessage().attachments.toList()[0].url
+                                        val foot = EmbedBuilder.Footer()
+                                        foot.icon = reactionAddEvent.getGuild()!!.getIconUrl(Image.Format.GIF)!!
+                                        foot.text = reactionAddEvent.getGuild()!!.name
+                                        footer = foot
                                     }
                                 }
                             }
