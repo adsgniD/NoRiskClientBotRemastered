@@ -49,7 +49,7 @@ object Manager {
                             this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                         }
                     }
-                    if(this.message.content.toLowerCase().contains("lies") && this.message.content.toLowerCase().contains("pings")) {
+                    if(this.message.content.toLowerCase().contains("lies") && this.message.content.toLowerCase().contains("pins")) {
                         this.message.channel.pinnedMessages.collect {
                             this.message.channel.createMessage(it.content)
                         }
