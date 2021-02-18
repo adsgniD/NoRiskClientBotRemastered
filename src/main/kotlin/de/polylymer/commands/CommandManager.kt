@@ -6,6 +6,8 @@ import de.polylymer.commands.implementation.DownloadCommand
 import de.polylymer.commands.implementation.RandomCommand
 import de.polylymer.commands.implementation.TemplateCommand
 import dev.kord.common.annotation.KordPreview
+import dev.kord.common.entity.Permission
+import dev.kord.common.entity.Permissions
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.createApplicationCommand
 import dev.kord.core.entity.Guild
@@ -14,6 +16,8 @@ import dev.kord.core.event.interaction.InteractionCreateEvent
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.toCollection
+import java.util.stream.Collectors
 
 @KordPreview
 object CommandManager {
@@ -25,13 +29,14 @@ object CommandManager {
     }
 
     suspend fun init() {
-
         DownloadCommand
-        //CapeCommand
+        CapeCommand
         RandomCommand
         TemplateCommand
-
         cleanupGuilds()
+        Manager.client.guilds.collect {
+            println("Registering commands for ${it.name}")
+        }
         registerOnGuilds()
         Manager.client.on<GuildCreateEvent> {
             this.guild.cleanupCommands()
@@ -43,14 +48,6 @@ object CommandManager {
             } else {
                 this.interaction.channel.createMessage("Bitte führe Bot-Commands in " + this.interaction.guild.getChannel(Snowflake("774273609467691018")
                 ).mention + " aus " + this.interaction.member.mention)
-            }
-        }
-        Manager.client.on<MessageCreateEvent> {
-            if(!this.member!!.isBot) {
-                if(this.message.content.contains("discord.gg")) {
-                    this.message.delete()
-                    this.member!!.kick("Posting invites")
-                }
             }
         }
     }

@@ -29,13 +29,11 @@ object Manager {
 
     @KordPreview
     suspend fun start() {
-        println("hallo")
+        println("Starting...")
         client = Kord(
             ConfigManager.discordApplication.token
             ?: error("Configure the application before running it"))
-        println("..?")
         CommandManager.init()
-        println("kek")
         client.on<MessageCreateEvent> {
             if (this.member != null) {
                 if(this.member!!.isBot) {

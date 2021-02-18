@@ -6,7 +6,7 @@ import dev.kord.core.entity.interaction.Interaction
 
 @KordPreview
 object TemplateCommand : SlashCommand(
-    name = "",
+    name = "template",
     description = "Get the template to design your own cape"
 ) {
 

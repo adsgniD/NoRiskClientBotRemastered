@@ -8,7 +8,7 @@ import dev.kord.core.entity.interaction.Interaction
 @KordPreview
 object RandomCommand : SlashCommand(
     name = "random",
-    "Don't ask"
+    description = "Don't ask"
 ) {
 
     val list = listOf("https://cdn.discordapp.com/attachments/774273183804948500/811650709484208169/unknown.png", "https://tenor.com/view/finals-spongebob-squidward-nervous-breakdown-gif-12911512", "https://tenor.com/view/walking-shoes-sneaker-going-away-gif-13461262", "https://tenor.com/view/shaun-the-sheep6-shaun-the-sheep-shaun-das-schaf-shaun-le-mouton-shaun-vita-da-pecora-gif-16663792",
