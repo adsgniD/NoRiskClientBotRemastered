@@ -6,18 +6,13 @@ import de.polylymer.commands.implementation.DownloadCommand
 import de.polylymer.commands.implementation.RandomCommand
 import de.polylymer.commands.implementation.TemplateCommand
 import dev.kord.common.annotation.KordPreview
-import dev.kord.common.entity.Permission
-import dev.kord.common.entity.Permissions
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.createApplicationCommand
 import dev.kord.core.entity.Guild
 import dev.kord.core.event.guild.GuildCreateEvent
 import dev.kord.core.event.interaction.InteractionCreateEvent
-import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.toCollection
-import java.util.stream.Collectors
 
 @KordPreview
 object CommandManager {

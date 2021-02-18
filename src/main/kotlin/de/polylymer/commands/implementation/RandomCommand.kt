@@ -2,7 +2,6 @@ package de.polylymer.commands.implementation
 
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.behavior.followUp
 import dev.kord.core.entity.interaction.Interaction
 
 @KordPreview

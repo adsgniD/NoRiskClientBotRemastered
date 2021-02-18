@@ -4,7 +4,6 @@ import de.polylymer.commands.SlashCommand
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Snowflake
-import dev.kord.core.behavior.ban
 import dev.kord.core.behavior.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.rest.builder.message.EmbedBuilder
