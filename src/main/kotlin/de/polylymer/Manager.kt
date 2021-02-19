@@ -108,6 +108,7 @@ object Manager {
                                         foot.text = reactionAddEvent.getGuild()!!.name
                                         footer = foot
                                     }
+                                    this.message.deleteAllReactions()
                                 }
                             }
                         }
