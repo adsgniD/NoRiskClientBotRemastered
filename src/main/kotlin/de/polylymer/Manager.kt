@@ -37,6 +37,7 @@ object Manager {
                 if(this.member!!.isBot) {
                     if(this.message.channelId.asString == "790946998962487316") {
                         if(this.message.embeds.isNotEmpty()) {
+                            Thread.sleep(2000)
                             this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                         }
                     }
