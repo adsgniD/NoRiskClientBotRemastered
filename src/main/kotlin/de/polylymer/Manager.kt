@@ -46,7 +46,11 @@ object Manager {
                         this.member!!.kick("Posting invites")
                     } else if(this.message.channelId.asString == "774982518133751858") {
                         if(this.message.attachments.isNotEmpty()) {
-                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
+                            if(this.message.attachments.toList()[0].isImage) {
+                                if(this.message.attachments.toList()[0].height == 256 && this.message.attachments.toList()[0].width == 512) {
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
+                                }
+                            }
                         }
                     }
                     if(this.message.content.toLowerCase().contains("lies") && this.message.content.toLowerCase().contains("pins")) {
