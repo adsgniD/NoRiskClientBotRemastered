@@ -22,7 +22,7 @@ object StatsCommand : SlashCommand(
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge(true).followUp {
             embed {
-                title = interaction.member.asUser().username
+                title = "Profile of ${interaction.member.asUser().username}"
                 val thumb = EmbedBuilder.Thumbnail()
                 thumb.url = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
                 thumbnail = thumb
@@ -33,7 +33,7 @@ object StatsCommand : SlashCommand(
                 color = Color(0, 251, 255)
                 field {
                     name = "Joined At"
-                    value = interaction.member.asMember().memberData.joinedAt.split("T")[0]
+                    value = interaction.member.asMember().memberData.joinedAt.split("T")[0].replace("-", " ")
                 }
                 field {
                     name = "Pending"
@@ -42,7 +42,7 @@ object StatsCommand : SlashCommand(
                 if (!interaction.member.asMember().memberData.premiumSince.value.isNullOrEmpty()) {
                     field {
                         name = "Nitro since"
-                        value = interaction.member.asMember().memberData.premiumSince.value!!.split("T")[0]
+                        value = interaction.member.asMember().memberData.premiumSince.value!!.split("T")[0].replace("-", " ")
                     }
                 }
                 field {
