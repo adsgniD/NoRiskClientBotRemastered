@@ -3,9 +3,11 @@ package de.polylymer.commands.implementation
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.channel.TextChannelBehavior
+import dev.kord.core.entity.Message
 import dev.kord.core.entity.channel.TextChannel
 import dev.kord.core.entity.interaction.Interaction
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.toList
 
 @KordPreview
 object ChatStatsCommand : SlashCommand(
@@ -15,15 +17,13 @@ object ChatStatsCommand : SlashCommand(
 
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge(true)
-        var i = 0;
+        var msg = ArrayList<Message>()
         interaction.guild.channels.collect {
             if(it is TextChannelBehavior) {
                 val channel = it as TextChannelBehavior
-                channel.messages.collect {
-                    i = i.and(1)
-                }
+                msg.addAll(channel.messages.toList())
             }
         }
-        interaction.channel.createMessage("**$i** messages")
+        interaction.channel.createMessage("**${msg.size}** messages")
     }
 }
