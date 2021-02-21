@@ -14,6 +14,7 @@ object ChatStatsCommand : SlashCommand(
 ) {
 
     override suspend fun handleCommand(interaction: Interaction) {
+        interaction.acknowledge(true)
         var i = 0;
         interaction.guild.channels.collect {
             if(it is TextChannelBehavior) {
