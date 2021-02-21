@@ -58,7 +58,6 @@ object Manager {
                         this.message.channel.pinnedMessages.collect {
                             this.message.channel.createMessage(it.content)
                         }
-
                     }
                     if(this.message.content.toLowerCase().contains("cape") && this.message.content.toLowerCase().contains("nicht")) {
                         this.message.channel.createMessage("https://media.discordapp.net/attachments/774274615408328724/809743719057326122/ouahhhh_MeIn_CaPe_GeHt_NiChT.gif")

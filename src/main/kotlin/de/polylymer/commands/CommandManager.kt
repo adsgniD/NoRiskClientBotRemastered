@@ -1,10 +1,7 @@
 package de.polylymer.commands
 
 import de.polylymer.Manager
-import de.polylymer.commands.implementation.CapeCommand
-import de.polylymer.commands.implementation.DownloadCommand
-import de.polylymer.commands.implementation.RandomCommand
-import de.polylymer.commands.implementation.TemplateCommand
+import de.polylymer.commands.implementation.*
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.createApplicationCommand
@@ -28,6 +25,7 @@ object CommandManager {
         CapeCommand
         RandomCommand
         TemplateCommand
+        ChatStatsCommand
         cleanupGuilds()
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")
