@@ -41,7 +41,7 @@ object StatsCommand : SlashCommand(
                 }
                 if (!interaction.member.asMember().memberData.premiumSince.value.isNullOrEmpty()) {
                     field {
-                        name = "Nitro since"
+                        name = "Nitro-booster since"
                         value = interaction.member.asMember().memberData.premiumSince.value!!.split("T")[0].replace("-", " ")
                     }
                 }
