@@ -33,16 +33,16 @@ object StatsCommand : SlashCommand(
                 color = Color(0, 251, 255)
                 field {
                     name = "Joined At"
-                    value = interaction.member.asMember().memberData.joinedAt
+                    value = interaction.member.asMember().memberData.joinedAt.split("T")[0]
                 }
                 field {
                     name = "Pending"
-                    value = interaction.member.asMember().memberData.pending.toString()
+                    value = interaction.member.asMember().memberData.pending.discordBoolean.toString()
                 }
                 if (!interaction.member.asMember().memberData.premiumSince.value.isNullOrEmpty()) {
                     field {
                         name = "Nitro since"
-                        value = interaction.member.asMember().memberData.premiumSince.value!!
+                        value = interaction.member.asMember().memberData.premiumSince.value!!.split("T")[0]
                     }
                 }
                 field {
