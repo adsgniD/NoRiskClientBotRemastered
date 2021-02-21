@@ -47,11 +47,15 @@ object StatsCommand : SlashCommand(
                 }
                 field {
                     name = "Roles"
-                    var string = " "
+                    var string = ""
                     for (id in interaction.member.asMember().memberData.roles) {
                         string += "@${interaction.guild.getRole(id).name}, "
                     }
-                    value = string
+                    value = if(interaction.member.asMember().memberData.roles.isEmpty()) {
+                        "No roles"
+                    } else {
+                        string
+                    }
                 }
             }
         }
