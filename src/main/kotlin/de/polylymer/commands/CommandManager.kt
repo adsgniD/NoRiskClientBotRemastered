@@ -25,7 +25,7 @@ object CommandManager {
         CapeCommand
         RandomCommand
         TemplateCommand
-        ChatStatsCommand
+        StatsCommand
         cleanupGuilds()
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")
