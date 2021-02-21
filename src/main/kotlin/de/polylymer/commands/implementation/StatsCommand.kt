@@ -24,7 +24,7 @@ object StatsCommand : SlashCommand(
             embed {
                 title = "Profile of ${interaction.member.asUser().username}"
                 val thumb = EmbedBuilder.Thumbnail()
-                thumb.url = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
+                thumb.url = interaction.member.asMember().asUser().avatar.url
                 thumbnail = thumb
                 val foot = EmbedBuilder.Footer()
                 foot.icon = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
@@ -47,7 +47,7 @@ object StatsCommand : SlashCommand(
                 }
                 field {
                     name = "Roles"
-                    var string = ""
+                    var string = " "
                     for (id in interaction.member.asMember().memberData.roles) {
                         string += "@${interaction.guild.getRole(id).name}, "
                     }
