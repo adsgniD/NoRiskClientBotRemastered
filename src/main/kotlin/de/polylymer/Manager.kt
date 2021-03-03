@@ -19,7 +19,10 @@ import kotlinx.coroutines.flow.collect
 
 @KordPreview
 
-suspend fun main() = Manager.start()
+
+suspend fun main() {
+    Manager.start()
+}
 
 object Manager {
 
@@ -67,6 +70,9 @@ object Manager {
         }
         client.on<ReactionAddEvent> {
             if(this.getUserAsMember() != null) {
+                if(this.emoji == ReactionEmoji.Unicode(Emojis.loveYouGesture.unicode)) {
+                    this.message.deleteReaction(this.emoji)
+                }
                 if(!this.getUserAsMember()!!.isBot) {
                     if(this.channelId.asString == "790946998962487316") {
                         if(this.emoji == ReactionEmoji.Unicode(Emojis.star.unicode)) {
