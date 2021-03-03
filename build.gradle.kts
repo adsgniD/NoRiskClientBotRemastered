@@ -3,10 +3,17 @@ plugins {
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.serialization") version "1.4.21"
     application
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
+
+project.setProperty("mainClassName", "de.polylymer.Manager")
+
+val JVM_VERSION = JavaVersion.VERSION_11
+val JVM_VERSION_STRING = JVM_VERSION.versionString
 
 group = "de.polylymer"
 version = "1.0-SNAPSHOT"
+
 
 repositories {
     mavenCentral()
@@ -28,12 +35,22 @@ dependencies {
 }
 
 application {
-    mainClass.set("de.polylymer.ManagerKt")
+    mainClass.set("de.polylymer.ManagerKht")
 }
 
+val JavaVersion.versionString
+    get() = majorVersion.let {
+        val version = it.toInt()
+        if (version <= 10) "1.$it" else it
+    }
+
+fun org.jetbrains.kotlin.gradle.tasks.KotlinCompile.configureJvmVersion() {
+    kotlinOptions.jvmTarget = JVM_VERSION_STRING
+}
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    configureJvmVersion()
+    configureJvmVersion()
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
