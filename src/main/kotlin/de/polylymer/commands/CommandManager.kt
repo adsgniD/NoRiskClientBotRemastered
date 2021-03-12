@@ -26,6 +26,7 @@ object CommandManager {
         RandomCommand
         TemplateCommand
         StatsCommand
+        CocoCommand
         cleanupGuilds()
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")
