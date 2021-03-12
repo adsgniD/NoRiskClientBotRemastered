@@ -62,6 +62,11 @@ object Manager {
                             this.message.channel.createMessage(it.content)
                         }
                     }
+                    if(this.member!!.id.asString == "818415611679604787") {
+                        if(this.message.content.toLowerCase().contains("^^")) {
+                            this.message.delete()
+                        }
+                    }
                     if(this.message.content.toLowerCase().contains("cape") && this.message.content.toLowerCase().contains("nicht")) {
                         this.message.channel.createMessage("https://media.discordapp.net/attachments/774274615408328724/809743719057326122/ouahhhh_MeIn_CaPe_GeHt_NiChT.gif")
                     }
@@ -70,7 +75,7 @@ object Manager {
         }
         client.on<ReactionAddEvent> {
             if(this.getUserAsMember() != null) {
-                if(this.emoji == ReactionEmoji.Unicode(Emojis.loveYouGesture.unicode)) {
+                if(this.emoji == ReactionEmoji.Unicode(Emojis.loveYouGesture.unicode) || this.emoji == ReactionEmoji.Unicode(Emojis.metal.unicode) || this.emoji == ReactionEmoji.Unicode(Emojis.v.unicode) || this.emoji == ReactionEmoji.Unicode(Emojis.callMe.unicode)) {
                     this.message.deleteReaction(this.emoji)
                 }
                 if(!this.getUserAsMember()!!.isBot) {
