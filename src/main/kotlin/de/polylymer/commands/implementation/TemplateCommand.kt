@@ -11,7 +11,7 @@ object TemplateCommand : SlashCommand(
 ) {
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge(true)
+        interaction.acknowledge()
         interaction.channel.createMessage("https://cdn.discordapp.com/attachments/774273183804948500/811656301616169030/template.png")
     }
 
