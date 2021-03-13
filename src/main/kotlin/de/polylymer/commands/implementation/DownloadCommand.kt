@@ -1,5 +1,6 @@
 package de.polylymer.commands.implementation
 
+import de.polylymer.KordEXT.guild
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
@@ -15,16 +16,16 @@ object DownloadCommand : SlashCommand(
 ) {
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge(true).followUp {
+        interaction.acknowledge().followUp {
             embed {
                 title = "Download"
                 val thumb = EmbedBuilder.Thumbnail()
-                thumb.url = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
+                thumb.url = interaction.guild().getIconUrl(Image.Format.GIF)!!
                 color = Color(0, 251, 255)
                 thumbnail = thumb
                 val foot = EmbedBuilder.Footer()
-                foot.icon = interaction.getGuild().getIconUrl(Image.Format.GIF)!!
-                foot.text = interaction.getGuild().name
+                foot.icon = interaction.guild().getIconUrl(Image.Format.GIF)!!
+                foot.text = interaction.guild().name
                 footer = foot
                 field {
                     name = "Tutorial-Video"
