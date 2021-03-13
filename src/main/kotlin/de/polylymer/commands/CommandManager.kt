@@ -1,5 +1,7 @@
 package de.polylymer.commands
 
+import de.polylymer.KordEXT.guild
+import de.polylymer.KordEXT.member
 import de.polylymer.Manager
 import de.polylymer.commands.implementation.*
 import dev.kord.common.annotation.KordPreview
@@ -38,10 +40,10 @@ object CommandManager {
         }
         Manager.client.on<InteractionCreateEvent> {
             if(this.interaction.channel.id.asString == "774273609467691018") {
-                commands[interaction.command.name]?.handleCommand(interaction)
+                commands[interaction.command.rootName]?.handleCommand(interaction)
             } else {
-                this.interaction.channel.createMessage("Bitte führe Bot-Commands in " + this.interaction.guild.getChannel(Snowflake("774273609467691018")
-                ).mention + " aus " + this.interaction.member.mention)
+                this.interaction.channel.createMessage("Bitte führe Bot-Commands in " + this.interaction.guild().getChannel(Snowflake("774273609467691018")
+                ).mention + " aus " + this.interaction.member().mention)
             }
         }
     }
