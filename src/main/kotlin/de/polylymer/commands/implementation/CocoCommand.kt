@@ -45,7 +45,7 @@ object CocoCommand : SlashCommand(
     )
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge(true)
+        interaction.acknowledge()
         interaction.channel.createMessage(list.random())
     }
 }
