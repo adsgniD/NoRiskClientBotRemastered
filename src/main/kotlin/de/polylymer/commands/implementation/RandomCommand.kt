@@ -19,7 +19,7 @@ object RandomCommand : SlashCommand(
         "\"Nam ist ein Junge und kein Mädchen\" ~ Mysterio", "\"BlueSneakers ist kein Blauer Sneaker sonder einer Blauer Schleicher\" ~ BlueSneakers", "https://cdn.discordapp.com/attachments/774596130541142037/811914431029837835/tenor.gif", "https://cdn.discordapp.com/attachments/774596130541142037/811914767747776522/200.gif", "https://cdn.discordapp.com/attachments/774596130541142037/811917662019649536/mrbean_foeyqqrl.gif")
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge(true)
+        interaction.acknowledge()
         interaction.channel.createMessage(list.random())
     }
 
