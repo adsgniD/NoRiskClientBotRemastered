@@ -9,7 +9,10 @@ import dev.kord.common.entity.*
 import dev.kord.core.Kord
 import dev.kord.core.behavior.channel.MessageChannelBehavior
 import dev.kord.core.behavior.channel.createEmbed
+import dev.kord.core.entity.Guild
+import dev.kord.core.entity.Member
 import dev.kord.core.entity.ReactionEmoji
+import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.event.message.ReactionAddEvent
 import dev.kord.core.on
@@ -131,4 +134,18 @@ object Manager {
 
         println("xd")
     }
+}
+
+object KordEXT {
+
+    @KordPreview
+    suspend fun Interaction.guild(): Guild {
+        return kord.getGuild(data.guildId.value!!)!!
+    }
+
+    @KordPreview
+    suspend fun Interaction.member(): Member {
+        return guild().getMember(data.member.value!!.userId)
+    }
+
 }
