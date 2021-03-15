@@ -47,6 +47,14 @@ object Manager {
                             this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                         }
                     }
+                    if(this.message.channelId.asString == "774596130541142037") {
+                        val channel = this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
+                        channel.messages.collect {
+                            if(message.content.toLowerCase().contains(this.message.content.toLowerCase())) {
+                                message.delete()
+                            }
+                        }
+                    }
                 } else {
                     if(this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
