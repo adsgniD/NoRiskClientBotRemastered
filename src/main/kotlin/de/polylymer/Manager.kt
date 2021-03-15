@@ -47,15 +47,22 @@ object Manager {
                             this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                         }
                     }
+                } else {
                     if(this.message.channelId.asString == "774596130541142037") {
-                        val channel = this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
-                        channel.messages.collect {
-                            if(message.content.toLowerCase().contains(this.message.content.toLowerCase())) {
-                                message.delete()
+                        val umfragenChannel = this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
+                        val invalidIdeasChannel = this.getGuild()!!.getChannel(Snowflake("821023603369836546")) as MessageChannelBehavior
+                        var found = false
+                        umfragenChannel.messages.collect {
+                            if(!found) {
+                                if(it.asMessage().content.toLowerCase().contains(this.message.content.toLowerCase())) {
+                                    this.message.channel.createMessage("Diese Idee ist bereits in ${umfragenChannel.mention}!")
+                                    invalidIdeasChannel.createMessage("\"${this.message.content}\" by ${this.message.author!!.mention}")
+                                    this.message.delete()
+                                    found = true
+                                }
                             }
                         }
                     }
-                } else {
                     if(this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
                         this.member!!.kick("Posting invites")
