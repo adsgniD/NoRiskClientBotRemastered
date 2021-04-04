@@ -40,21 +40,23 @@ object Manager {
         CommandManager.init()
         client.on<MessageCreateEvent> {
             if (this.member != null) {
-                if(this.member!!.isBot) {
-                    if(this.message.channelId.asString == "790946998962487316") {
-                        if(this.message.embeds.isNotEmpty()) {
+                if (this.member!!.isBot) {
+                    if (this.message.channelId.asString == "790946998962487316") {
+                        if (this.message.embeds.isNotEmpty()) {
                             Thread.sleep(2000)
                             this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                         }
                     }
                 } else {
-                    if(this.message.channelId.asString == "774596130541142037") {
-                        val umfragenChannel = this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
-                        val invalidIdeasChannel = this.getGuild()!!.getChannel(Snowflake("821023603369836546")) as MessageChannelBehavior
+                    if (this.message.channelId.asString == "774596130541142037") {
+                        val umfragenChannel =
+                            this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
+                        val invalidIdeasChannel =
+                            this.getGuild()!!.getChannel(Snowflake("821023603369836546")) as MessageChannelBehavior
                         var found = false
                         umfragenChannel.messages.collect {
-                            if(!found) {
-                                if(it.asMessage().content.toLowerCase().contains(this.message.content.toLowerCase())) {
+                            if (!found) {
+                                if (it.asMessage().content.toLowerCase().contains(this.message.content.toLowerCase())) {
                                     this.message.channel.createMessage("Diese Idee ist bereits in ${umfragenChannel.mention}!")
                                     invalidIdeasChannel.createMessage("\"${this.message.content}\" by ${this.message.author!!.mention}")
                                     this.message.delete()
@@ -63,30 +65,29 @@ object Manager {
                             }
                         }
                     }
-                    if(this.message.content.toLowerCase().contains("discord.gg")) {
+                    if (this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
                         this.member!!.kick("Posting invites")
-                    } else if(this.message.channelId.asString == "774982518133751858") {
-                        if(this.message.attachments.isNotEmpty()) {
-                            if(this.message.attachments.toList()[0].isImage) {
-                                if(this.message.attachments.toList()[0].height == 256 && this.message.attachments.toList()[0].width == 512) {
+                    } else if (this.message.channelId.asString == "774982518133751858") {
+                        if (this.message.attachments.isNotEmpty()) {
+                            if (this.message.attachments.toList()[0].isImage) {
+                                if (this.message.attachments.toList()[0].height == 256 && this.message.attachments.toList()[0].width == 512) {
                                     this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
                                 }
                             }
                         }
                     }
-                    if(this.message.content.toLowerCase().contains("lies") && this.message.content.toLowerCase().contains("pins")) {
+                    if (this.message.content.toLowerCase().contains("lies") && this.message.content.toLowerCase()
+                            .contains("pins")
+                    ) {
                         this.message.channel.pinnedMessages.collect {
                             this.message.channel.createMessage(it.content)
                         }
                     }
-                    if(this.member!!.id.asString == "818415611679604787") {
-                        if(this.message.content.toLowerCase().contains("^^")) {
+                    if (this.member!!.id.asString == "818415611679604787") {
+                        if (this.message.content.toLowerCase().contains("^^")) {
                             this.message.delete()
                         }
-                    }
-                    if(this.message.content.toLowerCase().contains("cape") && this.message.content.toLowerCase().contains("nicht")) {
-                        this.message.channel.createMessage("https://media.discordapp.net/attachments/774274615408328724/809743719057326122/ouahhhh_MeIn_CaPe_GeHt_NiChT.gif")
                     }
                 }
             }
