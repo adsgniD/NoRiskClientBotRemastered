@@ -2,6 +2,7 @@ package de.polylymer.commands.implementation
 
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.annotation.KordPreview
+import dev.kord.core.behavior.followUp
 import dev.kord.core.entity.interaction.Interaction
 
 @KordPreview
@@ -45,7 +46,9 @@ object CocoCommand : SlashCommand(
     )
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge()
-        interaction.channel.createMessage(list.random())
+        interaction.acknowledge().followUp {
+            content = list.random()
+        }
+
     }
 }

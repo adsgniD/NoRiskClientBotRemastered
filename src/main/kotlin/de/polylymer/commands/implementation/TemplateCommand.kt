@@ -2,6 +2,7 @@ package de.polylymer.commands.implementation
 
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.annotation.KordPreview
+import dev.kord.core.behavior.followUp
 import dev.kord.core.entity.interaction.Interaction
 
 @KordPreview
@@ -11,8 +12,9 @@ object TemplateCommand : SlashCommand(
 ) {
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge()
-        interaction.channel.createMessage("https://cdn.discordapp.com/attachments/774273183804948500/811656301616169030/template.png")
+        interaction.acknowledge().followUp {
+            content = "https://cdn.discordapp.com/attachments/774273183804948500/811656301616169030/template.png"
+        }
     }
 
 }
