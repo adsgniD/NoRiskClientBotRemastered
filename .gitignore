@@ -4,3 +4,4 @@ build
 
 *.class
 ./config/discordApplication.conf
+config/discordApplication.conf
