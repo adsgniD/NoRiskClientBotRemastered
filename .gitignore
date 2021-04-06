@@ -1,4 +1,7 @@
 build
+.gradle
+.idea
 
 *.class
+./config/discordApplication.conf
 config/discordApplication.conf
