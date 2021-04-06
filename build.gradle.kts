@@ -1,7 +1,7 @@
 plugins {
     java
     kotlin("jvm") version "1.4.31"
-    kotlin("plugin.serialization") version "1.4.21"
+    kotlin("plugin.serialization") version "1.4.31"
     application
 }
 
