@@ -13,7 +13,7 @@ object TemplateCommand : SlashCommand(
 
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.acknowledge().followUp {
-            content = "https://cdn.discordapp.com/attachments/774273183804948500/811656301616169030/template.png"
+            content = "https://cdn.discordapp.com/attachments/788821736815853608/827167628745375744/template2.png"
         }
     }
 

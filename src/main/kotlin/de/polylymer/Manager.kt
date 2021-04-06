@@ -3,6 +3,8 @@ package de.polylymer
 import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.commands.CommandManager
 import de.polylymer.config.ConfigManager
+import de.polylymer.listener.MessageListener
+import de.polylymer.listener.ReactionListener
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.*
@@ -20,9 +22,12 @@ import dev.kord.rest.Image
 import dev.kord.rest.builder.message.EmbedBuilder
 import kotlinx.coroutines.flow.collect
 
+/*
+* Using hardcoded channelIDs because its not a public bot.
+*/
+
+
 @KordPreview
-
-
 suspend fun main() {
     Manager.start()
 }
@@ -38,121 +43,16 @@ object Manager {
             ConfigManager.discordApplication.token
             ?: error("Configure the application before running it"))
         CommandManager.init()
-        client.on<MessageCreateEvent> {
-            if (this.member != null) {
-                if (this.member!!.isBot) {
-                    if (this.message.channelId.asString == "790946998962487316") {
-                        if (this.message.embeds.isNotEmpty()) {
-                            Thread.sleep(2000)
-                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
-                        }
-                    }
-                } else {
-                    if (this.message.channelId.asString == "774596130541142037") {
-                        val umfragenChannel =
-                            this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
-                        val invalidIdeasChannel =
-                            this.getGuild()!!.getChannel(Snowflake("821023603369836546")) as MessageChannelBehavior
-                        var found = false
-                        umfragenChannel.messages.collect {
-                            if (!found) {
-                                if (it.asMessage().content.toLowerCase().contains(this.message.content.toLowerCase())) {
-                                    this.message.channel.createMessage("Diese Idee ist bereits in ${umfragenChannel.mention}!")
-                                    invalidIdeasChannel.createMessage("\"${this.message.content}\" by ${this.message.author!!.mention}")
-                                    this.message.delete()
-                                    found = true
-                                }
-                            }
-                        }
-                    }
-                    if (this.message.content.toLowerCase().contains("discord.gg")) {
-                        this.message.delete()
-                        this.member!!.kick("Posting invites")
-                    } else if (this.message.channelId.asString == "774982518133751858") {
-                        if (this.message.attachments.isNotEmpty()) {
-                            if (this.message.attachments.toList()[0].isImage) {
-                                if (this.message.attachments.toList()[0].height == 256 && this.message.attachments.toList()[0].width == 512) {
-                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.star.unicode))
-                                }
-                            }
-                        }
-                    }
-                    if (this.message.content.toLowerCase().contains("lies") && this.message.content.toLowerCase()
-                            .contains("pins")
-                    ) {
-                        this.message.channel.pinnedMessages.collect {
-                            this.message.channel.createMessage(it.content)
-                        }
-                    }
-                    if (this.member!!.id.asString == "818415611679604787") {
-                        if (this.message.content.toLowerCase().contains("^^")) {
-                            this.message.delete()
-                        }
-                    }
-                }
-            }
-        }
-        client.on<ReactionAddEvent> {
-            if(this.getUserAsMember() != null) {
-                if(this.emoji == ReactionEmoji.Unicode(Emojis.loveYouGesture.unicode) || this.emoji == ReactionEmoji.Unicode(Emojis.metal.unicode) || this.emoji == ReactionEmoji.Unicode(Emojis.v.unicode) || this.emoji == ReactionEmoji.Unicode(Emojis.callMe.unicode)) {
-                    this.message.deleteReaction(this.emoji)
-                }
-                if(!this.getUserAsMember()!!.isBot) {
-                    if(this.channelId.asString == "790946998962487316") {
-                        if(this.emoji == ReactionEmoji.Unicode(Emojis.star.unicode)) {
-                            if(this.message.asMessage().embeds.isNotEmpty()) {
-                                val channel = this.guild!!.getChannel(Snowflake("811526154469113886")) as MessageChannelBehavior
-                                channel.createEmbed {
-                                    title = "Cape of the Day"
-                                    description = "Das Cape des heutigen Tages ist..."
-                                    val thumb = EmbedBuilder.Thumbnail()
-                                    val reactionAddEvent = this@on
-                                    thumb.url = reactionAddEvent.guild!!.asGuild().getIconUrl(Image.Format.GIF)!!
-                                    color = Color(0, 251, 255)
-                                    thumbnail = thumb
-                                    image = reactionAddEvent.message.asMessage().embeds[0].image!!.url!!
-                                    val foot = EmbedBuilder.Footer()
-                                    foot.icon = reactionAddEvent.getGuild()!!.getIconUrl(Image.Format.GIF)!!
-                                    foot.text = reactionAddEvent.getGuild()!!.name
-                                    footer = foot
-                                }
-                            }
-                        }
-                    } else if(this.channelId.asString == "774982518133751858") {
-                        if(this.emoji == ReactionEmoji.Unicode(Emojis.star.unicode)) {
-                            if(this.getUserAsMember()!!.getPermissions().contains(Permission.ManageMessages)) {
-                                if(this.message.asMessage().attachments.isNotEmpty()) {
-                                    val channel = this.guild!!.getChannel(Snowflake("811526154469113886")) as MessageChannelBehavior
-                                    channel.createEmbed {
-                                        title = "Cape of the Day"
-                                        description = "Das Cape des heutigen Tages ist..."
-                                        val thumb = EmbedBuilder.Thumbnail()
-                                        val reactionAddEvent = this@on
-                                        thumb.url = reactionAddEvent.guild!!.asGuild().getIconUrl(Image.Format.GIF)!!
-                                        color = Color(0, 251, 255)
-                                        thumbnail = thumb
-                                        image = reactionAddEvent.message.asMessage().attachments.toList()[0].url
-                                        val foot = EmbedBuilder.Footer()
-                                        foot.icon = reactionAddEvent.getGuild()!!.getIconUrl(Image.Format.GIF)!!
-                                        foot.text = reactionAddEvent.getGuild()!!.name
-                                        footer = foot
-                                    }
-                                    this.message.deleteAllReactions()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //REGISTER LISTENER
+        MessageListener
+        ReactionListener
         client.login()
-        println("hawhha lustig")
-
-        println("xd")
     }
 }
 
 object KordEXT {
+
+    //some weird bug appeared, this was a notlösung
 
     @KordPreview
     suspend fun Interaction.guild(): Guild {
