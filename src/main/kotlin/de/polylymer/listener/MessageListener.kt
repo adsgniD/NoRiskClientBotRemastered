@@ -24,7 +24,7 @@ object MessageListener {
                         }
                     }
                 } else {
-                    //invalid idea blocking
+                    /*invalid idea blocking
                     if (this.message.channelId.asString == "774596130541142037") {
                         val umfragenChannel =
                             this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
@@ -41,7 +41,8 @@ object MessageListener {
                                 }
                             }
                         }
-                    }
+                    } */
+                        
                     //invite detection
                     if (this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
