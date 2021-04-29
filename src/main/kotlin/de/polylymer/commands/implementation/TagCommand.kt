@@ -1,0 +1,43 @@
+package de.polylymer.commands.implementation
+
+import de.polylymer.commands.SlashCommand
+import de.polylymer.database.MongoManager
+import dev.kord.common.Color
+import dev.kord.common.annotation.KordPreview
+import dev.kord.core.behavior.followUp
+import dev.kord.core.entity.interaction.Interaction
+import dev.kord.core.entity.interaction.string
+import dev.kord.rest.builder.message.EmbedBuilder
+import org.litote.kmongo.bson
+import org.litote.kmongo.findOne
+
+@KordPreview
+object TagCommand : SlashCommand(
+    name = "tag",
+    description = "Show users who can't download an execute a file how to do something.",
+    {
+        subCommand("post", "Post a alias-tag.") {
+            string("entry", "Select an valid alias-tag.") {
+                required = true
+                for (it in MongoManager.aliases.find().toList())
+                    choice(it.key, it.key)
+            }
+        }
+    }
+) {
+    override suspend fun handleCommand(interaction: Interaction) {
+        interaction.acknowledge().followUp {
+            val entry = interaction.command.options["entry"]?.string()
+            if (entry != null) {
+                val alias = MongoManager.aliases.findOne("{\"key\":\"${entry}\"}")
+                if(alias != null) {
+                    interaction.acknowledge().followUp {
+                        content = alias.value
+                    }
+                }
+            }
+
+        }
+
+    }
+}
