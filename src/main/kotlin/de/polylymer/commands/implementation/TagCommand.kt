@@ -30,6 +30,7 @@ object TagCommand : SlashCommand(
                 if(alias != null) {
                     content = alias.value
                 } else {
+
                     content = "This alias could not been found."
                 }
             }
