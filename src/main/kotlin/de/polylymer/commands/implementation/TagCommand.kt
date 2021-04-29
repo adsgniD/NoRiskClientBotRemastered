@@ -13,10 +13,10 @@ object TagCommand : SlashCommand(
     name = "tag",
     description = "Show users who can't download an execute a file how to do something.",
     {
-        subCommand("post", "Post a alias-tag.") {
+        subCommand("post", "Show users who can't download an execute a file how to do something.") {
             string("entry", "Select an valid alias-tag.") {
                 required = true
-                for (it in MongoManager.aliases.find().toList())
+                for (it in MongoManager.aliases.find())
                     choice(it.key, it.key)
             }
         }
