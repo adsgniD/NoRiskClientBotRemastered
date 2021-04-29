@@ -2,13 +2,10 @@ package de.polylymer.commands.implementation
 
 import de.polylymer.commands.SlashCommand
 import de.polylymer.database.MongoManager
-import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.behavior.followUp
+import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.string
-import dev.kord.rest.builder.message.EmbedBuilder
-import org.litote.kmongo.bson
 import org.litote.kmongo.findOne
 
 @KordPreview
@@ -26,14 +23,14 @@ object TagCommand : SlashCommand(
     }
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge().followUp {
+        interaction.ackowledgePublic().followUp {
             val entry = interaction.command.options["entry"]?.string()
             if (entry != null) {
                 val alias = MongoManager.aliases.findOne("{\"key\":\"${entry}\"}")
                 if(alias != null) {
-                    interaction.acknowledge().followUp {
-                        content = alias.value
-                    }
+                    content = alias.value
+                } else {
+                    content = "This alias could not been found."
                 }
             }
 

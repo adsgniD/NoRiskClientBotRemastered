@@ -4,7 +4,7 @@ import de.polylymer.KordEXT.guild
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.behavior.followUp
+import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.rest.Image
 import dev.kord.rest.builder.message.EmbedBuilder
@@ -16,7 +16,7 @@ object DownloadCommand : SlashCommand(
 ) {
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge().followUp {
+        interaction.ackowledgePublic().followUp {
             embed {
                 title = "Download"
                 val thumb = EmbedBuilder.Thumbnail()

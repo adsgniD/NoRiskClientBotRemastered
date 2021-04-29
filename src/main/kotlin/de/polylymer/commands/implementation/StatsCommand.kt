@@ -3,7 +3,6 @@ package de.polylymer.commands.implementation
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
-import dev.kord.core.behavior.followUp
 import dev.kord.core.entity.Guild
 import dev.kord.core.entity.Member
 import dev.kord.core.entity.interaction.Interaction
@@ -12,6 +11,7 @@ import dev.kord.rest.builder.message.EmbedBuilder
 import de.polylymer.KordEXT
 import de.polylymer.KordEXT.guild
 import de.polylymer.KordEXT.member
+import dev.kord.core.behavior.interaction.followUp
 
 @KordPreview
 object StatsCommand : SlashCommand(
@@ -20,7 +20,7 @@ object StatsCommand : SlashCommand(
 ) {
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge().followUp {
+        interaction.ackowledgePublic().followUp {
             embed {
                 val guild: Guild = interaction.kord.getGuild(interaction.data.guildId.value!!)!!
                 val member: Member = guild.getMember(interaction.data.member.value!!.userId)

@@ -2,10 +2,7 @@ package de.polylymer.commands.implementation
 
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.annotation.KordPreview
-import dev.kord.common.entity.MessageStickerType
-import dev.kord.core.behavior.followUp
-import dev.kord.core.cache.data.MessageStickerData
-import dev.kord.core.entity.MessageSticker
+import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 
 @KordPreview
@@ -20,7 +17,7 @@ object RandomCommand : SlashCommand(
         "\"Nam ist ein Junge und kein Mädchen\" ~ Mysterio", "\"BlueSneakers ist kein Blauer Sneaker sonder einer Blauer Schleicher\" ~ BlueSneakers", "https://cdn.discordapp.com/attachments/774596130541142037/811914431029837835/tenor.gif", "https://cdn.discordapp.com/attachments/774596130541142037/811914767747776522/200.gif", "https://cdn.discordapp.com/attachments/774596130541142037/811917662019649536/mrbean_foeyqqrl.gif")
 
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge().followUp {
+        interaction.ackowledgePublic().followUp {
             content = list.random()
         }
     }

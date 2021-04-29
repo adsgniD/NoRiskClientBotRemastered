@@ -8,7 +8,7 @@ import de.polylymer.database.data.Alias
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.Permission
-import dev.kord.core.behavior.followUp
+import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.string
 import dev.kord.rest.Image
@@ -38,7 +38,7 @@ object AliasCommand : SlashCommand(
     }
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
-        interaction.acknowledge().followUp {
+        interaction.ackowledgePublic().followUp {
             if(interaction.member().getPermissions().contains(Permission.ManageMessages)) {
                 val key = interaction.command.options["key"]?.string()
                 val value = interaction.command.options["value"]?.string()
