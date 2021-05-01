@@ -2,6 +2,7 @@ package de.polylymer.commands.implementation
 
 import de.polylymer.KordEXT.guild
 import de.polylymer.KordEXT.member
+import de.polylymer.commands.CommandManager
 import de.polylymer.commands.SlashCommand
 import de.polylymer.database.MongoManager
 import de.polylymer.database.data.Alias
@@ -44,7 +45,7 @@ object AliasCommand : SlashCommand(
                 val value = interaction.command.options["value"]?.string()
                 if (key != null && value != null) {
                     MongoManager.aliases.insertOne(Alias(key,value))
-                    MongoManager.reconnect()
+                    CommandManager.reloadCommands()
                     embed {
                         color = Color(0,255,0)
                         title = "Alias created."
@@ -58,7 +59,7 @@ object AliasCommand : SlashCommand(
                     val alias = interaction.command.options["alias"]?.string()
                     if(alias != null) {
                         MongoManager.aliases.deleteOne("{\"key\":\"${alias}\"}".bson)
-                        MongoManager.reconnect()
+                        CommandManager.reloadCommands()
                         embed {
                             color = Color(255,0,0)
                             title = "Alias deleted."

@@ -52,6 +52,11 @@ object CommandManager {
         }
     }
 
+    suspend fun reloadCommands() {
+        cleanupGuilds()
+        registerOnGuilds()
+    }
+
     private suspend fun registerOnGuilds() = Manager.client.guilds.collect { it.registerCommands() }
 
     private suspend fun cleanupGuilds() = Manager.client.guilds.collect { it.cleanupCommands() }
