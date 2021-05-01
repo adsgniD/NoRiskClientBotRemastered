@@ -64,7 +64,7 @@ object StatsCommand : SlashCommand(
                 field {
                     val capeOfTheDayChannel = interaction.guild().getChannel(Snowflake("811526154469113886"))
                     name = "Capes of the Day"
-                    value = "This user has ${MongoManager.getUserData(interaction.member().id.asString)} capes in ${capeOfTheDayChannel.mention}"
+                    value = "This user has ${MongoManager.getUserData(interaction.member().id.asString).capesOfTheDay} capes in ${capeOfTheDayChannel.mention}"
                 }
             }
         }
