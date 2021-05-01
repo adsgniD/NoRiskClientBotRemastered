@@ -20,6 +20,7 @@ object TagCommand : SlashCommand(
                     choice(it.key, it.key)
             }
         }
+        subCommand("list", "Show users who can't download an execute a file how to do something.")
     }
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
@@ -27,14 +28,14 @@ object TagCommand : SlashCommand(
             val entry = interaction.command.options["entry"]?.string()
             if (entry != null) {
                 val alias = MongoManager.aliases.findOne("{\"key\":\"${entry}\"}")
-                if(alias != null) {
-                    content = alias.value
-                } else {
-
-                    content = "This alias could not been found."
+                content = alias?.value ?: "This alias could not been found. Try `/tag list`"
+            } else {
+                var listCompound = ""
+                for (alias in MongoManager.aliases.find()) {
+                    listCompound+=alias.key + ","
                 }
+                content = listCompound
             }
-
         }
 
     }
