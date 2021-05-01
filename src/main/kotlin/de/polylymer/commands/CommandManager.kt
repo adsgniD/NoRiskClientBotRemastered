@@ -5,6 +5,7 @@ import de.polylymer.KordEXT.member
 import de.polylymer.Manager
 import de.polylymer.commands.implementation.*
 import dev.kord.common.annotation.KordPreview
+import dev.kord.common.entity.Permission
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.createApplicationCommand
 import dev.kord.core.entity.Guild
@@ -42,7 +43,7 @@ object CommandManager {
             this.guild.registerCommands()
         }
         Manager.client.on<InteractionCreateEvent> {
-            if(this.interaction.channel.id.asString == "774273609467691018") {
+            if(this.interaction.channel.id.asString == "774273609467691018" || this.interaction.member().getPermissions().contains(Permission.ManageMessages)) {
                 commands[interaction.command.rootName]?.handleCommand(interaction)
             } else {
                 this.interaction.channel.createMessage("Bitte führe Bot-Commands in " + this.interaction.guild().getChannel(Snowflake("774273609467691018")
