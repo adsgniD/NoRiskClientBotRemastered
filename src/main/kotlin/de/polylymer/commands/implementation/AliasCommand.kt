@@ -45,6 +45,15 @@ object AliasCommand : SlashCommand(
                 val value = interaction.command.options["value"]?.string()
                 if (key != null && value != null) {
                     MongoManager.aliases.insertOne(Alias(key,value))
+                    embed {
+                        color = Color(255,150,0)
+                        title = "Bot unavaible."
+                        description = "The bot will be unavaible for about 1 minute due to reloading commands.."
+                        val foot = EmbedBuilder.Footer()
+                        foot.icon = interaction.guild().getIconUrl(Image.Format.GIF)!!
+                        foot.text = interaction.guild().name
+                        footer = foot
+                    }
                     CommandManager.reloadCommands()
                     embed {
                         color = Color(0,255,0)
@@ -59,6 +68,15 @@ object AliasCommand : SlashCommand(
                     val alias = interaction.command.options["alias"]?.string()
                     if(alias != null) {
                         MongoManager.aliases.deleteOne("{\"key\":\"${alias}\"}".bson)
+                        embed {
+                            color = Color(255,150,0)
+                            title = "Bot unavaible."
+                            description = "The bot will be unavaible for about 1 minute due to reloading commands.."
+                            val foot = EmbedBuilder.Footer()
+                            foot.icon = interaction.guild().getIconUrl(Image.Format.GIF)!!
+                            foot.text = interaction.guild().name
+                            footer = foot
+                        }
                         CommandManager.reloadCommands()
                         embed {
                             color = Color(255,0,0)
