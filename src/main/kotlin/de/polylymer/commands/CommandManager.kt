@@ -31,6 +31,7 @@ object CommandManager {
         CocoCommand
         AliasCommand
         TagCommand
+        RandomCapeCommand
         cleanupGuilds()
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")

@@ -2,6 +2,9 @@ package de.polylymer.listener
 
 import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.Manager
+import de.polylymer.database.MongoManager
+import de.polylymer.database.MongoManager.increaseCapesOfTheDay
+import de.polylymer.database.data.Cape
 import dev.kord.common.Color
 import dev.kord.common.entity.Permission
 import dev.kord.common.entity.Snowflake
@@ -47,6 +50,7 @@ object ReactionListener {
                                     foot.text = reactionAddEvent.getGuild()!!.name
                                     footer = foot
                                 }
+                                MongoManager.capesOfTheYear.insertOne(Cape(this.message.asMessage().embeds[0].image!!.url!!, "**uploaded via kitpvp.de**"))
                             }
                         }
                     } else if(this.channelId.asString == "774982518133751858") {
@@ -68,6 +72,8 @@ object ReactionListener {
                                         foot.text = reactionAddEvent.getGuild()!!.name
                                         footer = foot
                                     }
+                                    MongoManager.capesOfTheYear.insertOne(Cape(this.message.asMessage().attachments.toList()[0].url, this.message.asMessage().author!!.username))
+                                    increaseCapesOfTheDay(this.message.asMessage().author!!.id.asString)
                                     this.message.deleteAllReactions()
                                 }
                             }
@@ -77,5 +83,9 @@ object ReactionListener {
             }
         }
     }
+
+
+
+
 
 }

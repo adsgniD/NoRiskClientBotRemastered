@@ -4,6 +4,7 @@ import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.Manager
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.MessageChannelBehavior
+import dev.kord.core.behavior.reply
 import dev.kord.core.entity.ReactionEmoji
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
@@ -24,8 +25,7 @@ object MessageListener {
                         }
                     }
                 } else {
-                    /*invalid idea blocking
-                    if (this.message.channelId.asString == "774596130541142037") {
+                    if (this.message.channelId.asString == "774596130541142037" && this.message.content.isNotEmpty()) {
                         val umfragenChannel =
                             this.getGuild()!!.getChannel(Snowflake("821017903381741609")) as MessageChannelBehavior
                         val invalidIdeasChannel =
@@ -41,7 +41,7 @@ object MessageListener {
                                 }
                             }
                         }
-                    } */
+                    }
                         
                     //invite detection
                     if (this.message.content.toLowerCase().contains("discord.gg")) {
@@ -64,14 +64,16 @@ object MessageListener {
                         }
                     }
 
+
+                    // Nam-protection (highly recommended)
                     /*
-                    * Nam-protection (highly recommended)
                     if (this.member!!.id.asString == "818415611679604787") {
-                        if (this.message.content.toLowerCase().contains("^^")) {
-                            this.message.delete()
+                        if (this.message.content.contains("xD")) {
+                            this.message.reply { content = "12" }
                         }
                     }
                      */
+
                 }
             }
         }

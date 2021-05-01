@@ -11,6 +11,8 @@ import dev.kord.rest.builder.message.EmbedBuilder
 import de.polylymer.KordEXT
 import de.polylymer.KordEXT.guild
 import de.polylymer.KordEXT.member
+import de.polylymer.database.MongoManager
+import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.interaction.followUp
 
 @KordPreview
@@ -58,6 +60,11 @@ object StatsCommand : SlashCommand(
                     } else {
                         string
                     }
+                }
+                field {
+                    val capeOfTheDayChannel = interaction.guild().getChannel(Snowflake("811526154469113886"))
+                    name = "Capes of the Day"
+                    value = "This user has ${MongoManager.getUserData(interaction.member().id.asString)} capes in ${capeOfTheDayChannel.mention}"
                 }
             }
         }
