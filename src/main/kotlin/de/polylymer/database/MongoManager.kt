@@ -32,7 +32,7 @@ object MongoManager {
     }
 
     fun getUserData(userID: String): UserCapeData {
-        return userCapeData.findOne("{\"snowflake\":\"${userID}\"}") ?: UserCapeData(userID, 1)
+        return userCapeData.findOne("{\"snowflake\":\"${userID}\"}") ?: UserCapeData(userID, 0)
     }
 
 }
