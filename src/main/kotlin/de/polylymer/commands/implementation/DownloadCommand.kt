@@ -40,6 +40,10 @@ object DownloadCommand : SlashCommand(
                     value = "https://noriskclient.de/downloads/1.16.5noriskclientv2.zip"
                 }
                 field {
+                    name = "2.0-DevBuild (1.16.5)"
+                    value = "Klicke [hier](https://workupload.com/file/RzYjDg6v4UK) um dir Devbuilds herunterzuladen.\nMehr Informationen gibt es unter `/tag post devbuilds`"
+                }
+                field {
                     name = "Installer"
                     value = "https://noriskclient.de/downloads/installer.jar"
                 }
