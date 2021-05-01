@@ -11,7 +11,7 @@ import org.litote.kmongo.json
 
 object MongoManager {
 
-    val mongoDB = MongoDB(Config.databaseInfo)
+    var mongoDB = MongoDB(Config.databaseInfo)
 
     val aliases = mongoDB.getCollectionOrCreate<Alias>("NRC_ALIASES")
 
@@ -33,6 +33,12 @@ object MongoManager {
 
     fun getUserData(userID: String): UserCapeData {
         return userCapeData.findOne("{\"snowflake\":\"${userID}\"}") ?: UserCapeData(userID, 0)
+    }
+
+    fun reconnect() {
+        mongoDB.close()
+        Thread.sleep(1000)
+        mongoDB = MongoDB(Config.databaseInfo)
     }
 
 }

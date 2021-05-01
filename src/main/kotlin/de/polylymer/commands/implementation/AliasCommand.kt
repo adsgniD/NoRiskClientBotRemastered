@@ -44,6 +44,7 @@ object AliasCommand : SlashCommand(
                 val value = interaction.command.options["value"]?.string()
                 if (key != null && value != null) {
                     MongoManager.aliases.insertOne(Alias(key,value))
+                    MongoManager.reconnect()
                     embed {
                         color = Color(0,255,0)
                         title = "Alias created."
@@ -57,6 +58,7 @@ object AliasCommand : SlashCommand(
                     val alias = interaction.command.options["alias"]?.string()
                     if(alias != null) {
                         MongoManager.aliases.deleteOne("{\"key\":\"${alias}\"}".bson)
+                        MongoManager.reconnect()
                         embed {
                             color = Color(255,0,0)
                             title = "Alias deleted."
