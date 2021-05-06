@@ -93,7 +93,7 @@ object ReportCommand : SlashCommand(
                                 if (this.emoji == ReactionEmoji.Unicode(Emojis.wastebasket.unicode)) {
                                     this.message.delete()
                                 } else if (this.emoji == ReactionEmoji.Unicode(Emojis.whiteCheckMark.unicode)) {
-                                    MongoManager.getReport(reportID)?.ban()
+                                    MongoManager.getReport(reportID)!!.ban()
                                     this.message.delete()
                                 }
                             }
