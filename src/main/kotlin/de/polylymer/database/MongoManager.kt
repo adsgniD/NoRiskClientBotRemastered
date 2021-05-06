@@ -39,7 +39,7 @@ object MongoManager {
     }
 
     fun getReport(reportID: Int): Report? {
-        return reportData.findOne("{\"id\":\"${reportID}\"}")
+        return reportData.findOne("{\"id\":${reportID}}")
     }
 
     fun reconnect() {
