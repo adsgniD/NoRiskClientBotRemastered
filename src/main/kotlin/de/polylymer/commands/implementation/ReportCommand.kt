@@ -66,7 +66,7 @@ object ReportCommand : SlashCommand(
                         description = "${interaction.guild().getMember(Snowflake(name)).mention} got reported. ${if (other != null) "Other: $other" else "Other: Nothing provided"}\nReact to ban / ignore the person"
                         color = Color(0, 251, 255)
                     }
-                    content = "Report successfully"
+                    content = "Report successful"
                 }
             }
         }
