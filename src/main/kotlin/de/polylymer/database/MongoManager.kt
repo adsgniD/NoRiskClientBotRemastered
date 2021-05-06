@@ -3,6 +3,7 @@ package de.polylymer.database
 import de.polylymer.config.Config
 import de.polylymer.database.data.Alias
 import de.polylymer.database.data.Cape
+import de.polylymer.database.data.Report
 import de.polylymer.database.data.UserCapeData
 import net.axay.blueutils.database.mongodb.MongoDB
 import org.litote.kmongo.bson
@@ -19,6 +20,8 @@ object MongoManager {
 
     val userCapeData = mongoDB.getCollectionOrCreate<UserCapeData>("NRC_USER_CAPE_DATA")
 
+    val reportData = mongoDB.getCollectionOrCreate<Report>("NRC_REPORTS")
+
     fun increaseCapesOfTheDay(userID: String) {
         val userData = userCapeData.findOne("{\"snowflake\":\"${userID}\"}")
         if(userData == null) {
@@ -33,6 +36,10 @@ object MongoManager {
 
     fun getUserData(userID: String): UserCapeData {
         return userCapeData.findOne("{\"snowflake\":\"${userID}\"}") ?: UserCapeData(userID, 0)
+    }
+
+    fun getReport(reportID: Int): Report? {
+        return reportData.findOne("{\"id\":\"${reportID}\"}")
     }
 
     fun reconnect() {
