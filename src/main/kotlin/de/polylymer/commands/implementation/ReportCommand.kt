@@ -94,7 +94,6 @@ object ReportCommand : SlashCommand(
                                     this.message.delete()
                                 } else if (this.emoji == ReactionEmoji.Unicode(Emojis.whiteCheckMark.unicode)) {
                                     MongoManager.getReport(reportID)?.ban()
-                                    MongoManager.reportData.deleteOne(MongoManager.getReport(reportID)?.json?.bson!!)
                                     this.message.delete()
                                 }
                             }
