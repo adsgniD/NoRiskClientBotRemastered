@@ -5,6 +5,7 @@ import de.polylymer.commands.CommandManager
 import de.polylymer.config.ConfigManager
 import de.polylymer.listener.MessageListener
 import de.polylymer.listener.ReactionListener
+import de.polylymer.listener.ReadyListener
 import dev.kord.common.Color
 import dev.kord.common.annotation.KordPreview
 import dev.kord.common.entity.*
@@ -46,6 +47,7 @@ object Manager {
         //REGISTER LISTENER
         MessageListener
         ReactionListener
+        ReadyListener
         client.login()
     }
 }

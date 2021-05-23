@@ -34,6 +34,7 @@ object CommandManager {
         TagCommand
         RandomCapeCommand
         ReportCommand
+        BlacklistCommand
         cleanupGuilds()
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")

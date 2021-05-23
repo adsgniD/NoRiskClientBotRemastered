@@ -27,6 +27,7 @@ object DownloadCommand : SlashCommand(
                 foot.icon = interaction.guild().getIconUrl(Image.Format.GIF)!!
                 foot.text = interaction.guild().name
                 footer = foot
+                /*
                 field {
                     name = "Tutorial-Video"
                     value = "https://www.youtube.com/watch?v=4dcUdz2Efdc"
@@ -47,6 +48,19 @@ object DownloadCommand : SlashCommand(
                     name = "Installer"
                     value = "https://noriskclient.de/downloads/installer.jar"
                 }
+                 */
+                description = "**CLIENT ENDE?!**\n" +
+                        "\n" +
+                        "Wie bestimmt einige schon wissen ist NoRisk jetzt bald Badlion Partner und damit sieht es für den NoRiskClient eher schlecht aus. Außerdem sind die Cape, Cosmetic und Download-Server aus und werden wahrscheinlich nicht wieder hochgefahren. Für alle die noch nicht bescheid wussten, jetzt wisst ihr bescheid!\n" +
+                        "\n" +
+                        "> **Was bedeutet das für den Client?**\n" +
+                        "\n" +
+                        "Der Client wird nicht mehr weiter entwickelt und Funktionen wie Capes werden wahrscheinlich wegfallen und zum download wird es ihn scheinbar auch nicht mehr geben\n" +
+                        "\n" +
+                        "> **Mehr Infos?!**\n" +
+                        "\n" +
+                        "Ich hab selbst nicht mehr Informationen weswegen ihr nur NoRisk selbst fragen könnt. Ich denke aber es gibt nichts zum fragen da es __**wahrscheinlich**__ so sein wird wie oben beschrieben. Ansonsten fragt ihn im Stream (bitte nicht 10 mal das selbe Fragen und auch nicht spammen wenn er eure Frage nicht das erste mal beantwortet hat) \n" +
+                        "https://www.twitch.tv/norisk"
             }
         }
     }

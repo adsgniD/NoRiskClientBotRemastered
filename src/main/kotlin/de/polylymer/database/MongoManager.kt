@@ -1,10 +1,7 @@
 package de.polylymer.database
 
 import de.polylymer.config.Config
-import de.polylymer.database.data.Alias
-import de.polylymer.database.data.Cape
-import de.polylymer.database.data.Report
-import de.polylymer.database.data.UserCapeData
+import de.polylymer.database.data.*
 import net.axay.blueutils.database.mongodb.MongoDB
 import org.litote.kmongo.bson
 import org.litote.kmongo.findOne
@@ -21,6 +18,19 @@ object MongoManager {
     val userCapeData = mongoDB.getCollectionOrCreate<UserCapeData>("NRC_USER_CAPE_DATA")
 
     val reportData = mongoDB.getCollectionOrCreate<Report>("NRC_REPORTS")
+
+    val blacklist = mongoDB.getCollectionOrCreate<BlacklistEntry>("NRC_BLACKLIST")
+
+    lateinit var blacklistedWords: ArrayList<BlacklistEntry>
+
+    fun reloadBlacklist() {
+        val list = arrayListOf<BlacklistEntry>()
+        for (blacklistedWord in blacklist.find()) {
+            list.add(blacklistedWord)
+        }
+        blacklistedWords = list
+    }
+
 
     fun increaseCapesOfTheDay(userID: String) {
         val userData = userCapeData.findOne("{\"snowflake\":\"${userID}\"}")
