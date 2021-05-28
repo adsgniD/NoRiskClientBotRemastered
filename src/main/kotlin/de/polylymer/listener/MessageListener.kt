@@ -62,11 +62,11 @@ object MessageListener {
                             this.message.channel.createMessage(it.content)
                         }
                     }
-
-
+                    
+                    
                     if (this.message.content.contains("xD")) {
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode));
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode));
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
                     }
                 }
             }
