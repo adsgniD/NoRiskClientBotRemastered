@@ -4,7 +4,6 @@ import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.Manager
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.MessageChannelBehavior
-import dev.kord.core.behavior.reply
 import dev.kord.core.entity.ReactionEmoji
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
@@ -63,17 +62,12 @@ object MessageListener {
                             this.message.channel.createMessage(it.content)
                         }
                     }
-
-
-                    // Nam-protection (highly recommended)
-                    /*
-                    if (this.member!!.id.asString == "818415611679604787") {
-                        if (this.message.content.contains("xD")) {
-                            this.message.reply { content = "12" }
-                        }
+                    
+                    
+                    if (this.message.content.contains("xD")) {
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
                     }
-                     */
-
                 }
             }
         }
