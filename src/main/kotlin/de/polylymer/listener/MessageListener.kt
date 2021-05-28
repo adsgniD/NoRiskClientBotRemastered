@@ -65,11 +65,8 @@ object MessageListener {
 
 
                     if (this.message.content.contains("xD")) {
-                        if(message.content[message.content.indexOf('x')].isLowerCase() && message.content[message.content.indexOf('D')].isUpperCase()) {
-                            Thread.sleep(500);
-                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode));
-                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode));
-                        }
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode));
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode));
                     }
                 }
             }
