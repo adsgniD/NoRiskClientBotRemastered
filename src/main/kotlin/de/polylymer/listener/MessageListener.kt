@@ -11,8 +11,14 @@ import kotlinx.coroutines.flow.collect
 
 object MessageListener {
 
+    val _12YearOlds = listOf("370219437242187788", "848254211263430726", "707116990652743721")
+    //matrix, nam, bylumia
+    //in order
+
     init {
         Manager.client.on<MessageCreateEvent> {
+            val msg = this.message.content
+
             if (this.member != null) {
                 //cape of the day support for submitted cape-channel
                 if (this.member!!.isBot) {
@@ -62,11 +68,25 @@ object MessageListener {
                             this.message.channel.createMessage(it.content)
                         }
                     }
-                    
-                    
-                    if (this.message.content.contains("xD")) {
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+
+                    if (msg.toLowerCase().contains("xd")) {
+                        if(this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
+                            _12YearOlds.forEach {
+                                if (this.message.author!!.id.asString == it) {
+                                    Thread.sleep(500)
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+                                } else {
+                                    if(msg.contains("xD")) {
+                                        Thread.sleep(500)
+                                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                                        Thread.sleep(10) //cuz in sometimes (selten) there is a 21 anstatt eine 12
+                                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+                                    }
+                                }
+                            }
+                        }
+
                     }
                 }
             }
