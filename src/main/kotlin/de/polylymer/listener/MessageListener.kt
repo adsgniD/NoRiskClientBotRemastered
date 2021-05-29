@@ -18,7 +18,10 @@ object MessageListener {
     init {
         Manager.client.on<MessageCreateEvent> {
             val msg = this.message.content
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             if (this.member != null) {
                 //cape of the day support for submitted cape-channel
                 if (this.member!!.isBot) {
@@ -47,7 +50,7 @@ object MessageListener {
                             }
                         }
                     }
-                        
+
                     //invite detection
                     if (this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
@@ -69,6 +72,7 @@ object MessageListener {
                         }
                     }
 
+<<<<<<< Updated upstream
                     if (msg.toLowerCase().contains("xd")) {
                         if(this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
                             _12YearOlds.forEach {
@@ -87,6 +91,14 @@ object MessageListener {
                             }
                         }
 
+=======
+                    if (msg.contains("xD")) {
+                        if(this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
+                            Thread.sleep(500)
+                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+                        }
+>>>>>>> Stashed changes
                     }
                 }
             }
