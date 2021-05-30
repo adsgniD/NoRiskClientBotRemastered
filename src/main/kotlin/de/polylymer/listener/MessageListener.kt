@@ -4,16 +4,14 @@ import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.Manager
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.MessageChannelBehavior
+import dev.kord.core.entity.GuildEmoji
 import dev.kord.core.entity.ReactionEmoji
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 object MessageListener {
-
-    val _12YearOlds = listOf("370219437242187788", "848254211263430726", "707116990652743721")
-    //matrix, nam, bylumia
-    //in order
 
     init {
         Manager.client.on<MessageCreateEvent> {
@@ -68,29 +66,24 @@ object MessageListener {
                         }
                     }
 
-                    if (msg.toLowerCase().contains("xd")) {
-                        if (this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
-                            _12YearOlds.forEach {
-                                if (this.message.author!!.id.asString == it) {
-                                    Thread.sleep(500)
-                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
-                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
-                                } else {
-                                    if (msg.contains("xD")) {
-                                        Thread.sleep(500)
-                                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
-                                        Thread.sleep(10) //cuz in sometimes (selten) there is a 21 anstatt eine 12
-                                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
-                                    }
-                                }
-                            }
-                        }
-                    }
                     if (msg.contains("xD")) {
                         if(this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
-                            Thread.sleep(500)
-                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
-                            this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+                            if(!msg.contains("hast du eig ein bisschen obsi")) {
+                                Thread.sleep(500)
+                                this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                                this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+                            } else {
+                                if(Random().nextInt(5) == 2) {
+                                    Thread.sleep(500)
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorO.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorB.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorS.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorI.unicode))
+                                } else {
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorN.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorE.unicode))
+                                }
+                            }
                         }
                     }
                 }
