@@ -4,7 +4,6 @@ import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.Manager
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.MessageChannelBehavior
-import dev.kord.core.entity.GuildEmoji
 import dev.kord.core.entity.ReactionEmoji
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
