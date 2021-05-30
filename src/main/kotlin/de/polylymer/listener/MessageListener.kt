@@ -8,11 +8,13 @@ import dev.kord.core.entity.ReactionEmoji
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
 import kotlinx.coroutines.flow.collect
+import java.util.*
 
 object MessageListener {
 
     init {
         Manager.client.on<MessageCreateEvent> {
+            val msg = this.message.content
             if (this.member != null) {
                 //cape of the day support for submitted cape-channel
                 if (this.member!!.isBot) {
@@ -41,7 +43,7 @@ object MessageListener {
                             }
                         }
                     }
-                        
+
                     //invite detection
                     if (this.message.content.toLowerCase().contains("discord.gg")) {
                         this.message.delete()
@@ -62,11 +64,24 @@ object MessageListener {
                             this.message.channel.createMessage(it.content)
                         }
                     }
-                    
-                    
-                    if (this.message.content.contains("xD")) {
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+
+                    if (msg.contains("xD")) {
+                        if(this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
+                            if(!msg.contains("hast du eig ein bisschen obsi")) {
+                                this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                                this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
+                            } else {
+                                if(Random().nextInt(5) == 2) {
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorO.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorB.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorS.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorI.unicode))
+                                } else {
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorN.unicode))
+                                    this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorE.unicode))
+                                }
+                            }
+                        }
                     }
                 }
             }
