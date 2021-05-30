@@ -68,12 +68,10 @@ object MessageListener {
                     if (msg.contains("xD")) {
                         if(this.message.author!!.id.asString != "743435051512889434" /*Indikativ*/) {
                             if(!msg.contains("hast du eig ein bisschen obsi")) {
-                                Thread.sleep(500)
                                 this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
                                 this.message.addReaction(ReactionEmoji.Unicode(Emojis.two.unicode))
                             } else {
                                 if(Random().nextInt(5) == 2) {
-                                    Thread.sleep(500)
                                     this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorO.unicode))
                                     this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorB.unicode))
                                     this.message.addReaction(ReactionEmoji.Unicode(Emojis.regionalIndicatorS.unicode))
