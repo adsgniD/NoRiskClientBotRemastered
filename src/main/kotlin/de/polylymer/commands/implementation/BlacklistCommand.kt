@@ -90,7 +90,7 @@ object BlacklistCommand : SlashCommand(
 
     init {
         Manager.client.on<MessageCreateEvent> {
-            if (!this.member!!.isBot) {
+            if (!this.member!!.isBot || this.member!!.memberData.roles.isEmpty) {
                 for (blacklistedEntry in MongoManager.blacklistedWords) {
                     if(this.message.content.toLowerCase().contains(blacklistedEntry.key.toLowerCase())) {
                         this.message.channel.createMessage(blacklistedEntry.alias.value)
