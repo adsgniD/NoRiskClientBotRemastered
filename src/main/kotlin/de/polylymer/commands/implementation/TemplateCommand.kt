@@ -13,7 +13,7 @@ object TemplateCommand : SlashCommand(
 
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.ackowledgePublic().followUp {
-            content = "Achtung: Der Capeserver ist im Moment nicht erreichbar!"
+            content = "Achtung: Der Capeserver ist im Moment nicht erreichbar! \n"
             content = "https://cdn.discordapp.com/attachments/788821736815853608/827167628745375744/template2.png"
         }
     }
