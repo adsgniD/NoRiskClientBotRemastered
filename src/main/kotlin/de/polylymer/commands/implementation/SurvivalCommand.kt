@@ -12,7 +12,7 @@ object SurvivalCommand : SlashCommand(
     name = "survival",
     description = "Random survival quotes"
 ){
-    var list = listOf("Test", "Test2", "Test3")
+    //var list = listOf("Test", "Test2", "Test3")
 
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.ackowledgePublic().followUp {
