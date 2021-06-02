@@ -4,6 +4,7 @@ import com.gitlab.kordlib.kordx.emoji.Emojis
 import de.polylymer.Manager
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.behavior.channel.MessageChannelBehavior
+import dev.kord.core.behavior.reply
 import dev.kord.core.entity.ReactionEmoji
 import dev.kord.core.event.message.MessageCreateEvent
 import dev.kord.core.on
@@ -82,6 +83,15 @@ object MessageListener {
                                 }
                             }
                         }
+                    }
+
+                    if (this.message.content.toLowerCase().contains("omegalul")) {
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
+                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.zero.unicode))
+                    }
+
+                    if(this.message.content.contains("@[NoPing] MatrixGraphicz")) {
+                        this.message.reply { content = "Matrix will nicht gepingt werden, daher der Prefix..." }
                     }
                 }
             }

@@ -1,20 +1,22 @@
 package de.polylymer.commands.implementation
 
+import de.polylymer.KordEXT.member
 import de.polylymer.commands.SlashCommand
 import dev.kord.common.annotation.KordPreview
 import dev.kord.core.behavior.interaction.followUp
 import dev.kord.core.entity.interaction.Interaction
 
+
 @KordPreview
-object TemplateCommand : SlashCommand(
-    name = "template",
-    description = "Get the template to design your own cape"
-) {
+object SurvivalCommand : SlashCommand(
+    name = "survival",
+    description = "Random survival quotes"
+){
+    //var list = listOf("Test", "Test2", "Test3")
 
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.ackowledgePublic().followUp {
-            content = "Achtung: Der Capeserver ist im Moment nicht erreichbar! \n https://cdn.discordapp.com/attachments/788821736815853608/827167628745375744/template2.png"
+            //content = RandomCommand.list.random().replace("{ping}", interaction.member().asMember().mention)
         }
     }
-
 }
