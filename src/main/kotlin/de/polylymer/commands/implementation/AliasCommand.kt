@@ -79,7 +79,7 @@ object AliasCommand : SlashCommand(
                             foot.text = interaction.guild().name
                             footer = foot
                         }
-                        Thread.sleep(50)
+                        delay(1000)
                         CommandManager.reloadCommands()
                         embed {
                             color = Color(255,0,0)
