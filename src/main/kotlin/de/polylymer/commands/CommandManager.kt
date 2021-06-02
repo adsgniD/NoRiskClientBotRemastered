@@ -36,6 +36,8 @@ object CommandManager {
         ReportCommand
         BlacklistCommand
         cleanupGuilds()
+        RolesCommand
+        SurvivalCommand
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")
         }

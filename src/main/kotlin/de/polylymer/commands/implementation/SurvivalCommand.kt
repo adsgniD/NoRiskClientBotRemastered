@@ -16,7 +16,7 @@ object SurvivalCommand : SlashCommand(
 
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.ackowledgePublic().followUp {
-            content = RandomCommand.list.random().replace("{ping}", interaction.member().asMember().mention)
+            //content = RandomCommand.list.random().replace("{ping}", interaction.member().asMember().mention)
         }
     }
 }
