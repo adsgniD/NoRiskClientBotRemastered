@@ -14,6 +14,7 @@ import dev.kord.core.entity.interaction.Interaction
 import dev.kord.core.entity.interaction.string
 import dev.kord.rest.Image
 import dev.kord.rest.builder.message.EmbedBuilder
+import kotlinx.coroutines.delay
 import org.litote.kmongo.bson
 
 @KordPreview
@@ -54,7 +55,7 @@ object AliasCommand : SlashCommand(
                         foot.text = interaction.guild().name
                         footer = foot
                     }
-                    Thread.sleep(50)
+                    delay(1000)
                     CommandManager.reloadCommands()
                     embed {
                         color = Color(0,255,0)
