@@ -27,7 +27,6 @@ object RolesCommand : SlashCommand(
                 foot.icon = interaction.guild().getIconUrl(Image.Format.GIF)!!
                 foot.text = interaction.guild().name
                 footer = foot
-
                 field{
                     name = "Admin"
                     value = "Die Admins sind die Administratoren des Clients. Sie sind für die Leitung und Verwaltung des Clients verantwortlich. Bitte beachte, dass sie nicht gepingt werden wollen!"
@@ -47,7 +46,7 @@ object RolesCommand : SlashCommand(
                 }
                 field{
                     name = "Contributor"
-                    value = "Die Contributoren sind Leute die sich aktiv für den Erhalt des NoRiskClient Bots einsetzen. Sie bringen weitere Ideen ein und coden teilweise selbst am Bot.\n" +
+                    value = "Die Contributoren sind Leute die sich aktiv für den Erhalt des NoRiskClient Bots einsetzen. Sie bringen weitere Ideen ein, melden Fehler oder coden teilweise sogar selbst am Bot.\n" +
                             "Wenn du dich auch am Bot beteiligen willst, kannst du mal auf GitHub vorbeischauen, alles weitere ist dort erklärt:\n" +
                             "https://github.com/PolylymerDE/NoRiskClientBotRemastered"
                 }

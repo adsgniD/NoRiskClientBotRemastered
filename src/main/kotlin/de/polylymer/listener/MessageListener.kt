@@ -84,15 +84,6 @@ object MessageListener {
                             }
                         }
                     }
-
-                    if (this.message.content.toLowerCase().contains("omegalul")) {
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.one.unicode))
-                        this.message.addReaction(ReactionEmoji.Unicode(Emojis.zero.unicode))
-                    }
-
-                    if(this.message.content.contains("@[NoPing] MatrixGraphicz")) {
-                        this.message.reply { content = "Matrix will nicht gepingt werden, daher der Prefix..." }
-                    }
                 }
             }
         }

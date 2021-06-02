@@ -35,9 +35,8 @@ object CommandManager {
         RandomCapeCommand
         ReportCommand
         BlacklistCommand
-        cleanupGuilds()
         RolesCommand
-        SurvivalCommand
+        cleanupGuilds()
         Manager.client.guilds.collect {
             println("Registering commands for ${it.name}")
         }
