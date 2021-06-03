@@ -12,7 +12,7 @@ object CreateCapeCommand : SlashCommand(
 ) {
     override suspend fun handleCommand(interaction: Interaction) {
         interaction.ackowledgePublic().followUp {
-            val process = ProcessBuilder("python3", "../CreateCape/CapeManager", ).start()
+            val process = ProcessBuilder("python3", "../CreateCape/CapeManager.py", ).start()
             val filePath = Path.of("../CreateCape/out.png")
             addFile(path = filePath)
         }
