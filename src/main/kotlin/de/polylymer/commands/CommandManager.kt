@@ -24,6 +24,7 @@ object CommandManager {
     }
 
     suspend fun init() {
+        CreateCapeCommand
         DownloadCommand
         CapeCommand
         RandomCommand
